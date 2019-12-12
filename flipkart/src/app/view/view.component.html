@@ -1,0 +1,40 @@
+<div class="products-container">
+    <p>Cart{{cart.length}} Total Amount {{amount}}</p>
+    <div class="jumbotron" *ngFor="let p of products; let i=index" >
+        <h3 class="display-5">{{p.name}}</h3>
+        <h4>{{p.price}}</h4>
+        <p class="lead">{{p.description}}</p>
+
+        <small><span class="text-muted removTxt" (click)="removeProduct(p)">Delete</span>
+          <span class="pipe-iw">|</span>
+          <span  class="text-muted removTxt" (click)="editproduct(p)" >Edit</span>          
+      </small>
+      <div id="{{p._id}}" style="display: none;">
+        <table>
+          <tr>
+            <td>Product Name: </td>
+            <td><input type="text" name="ePrName" [(ngModel)]="ePrName" id=""></td>
+          </tr>
+          <tr>
+            <td>Product Price: </td>
+            <td><input type="text" name="ePrPrice" [(ngModel)]="ePrPrice" id=""></td>
+          </tr>
+          <tr>
+            <td>Product Description: </td>
+            <td><textarea name="ePrDescription"[(ngModel)]="ePrDescription"  cols="50" rows="5"></textarea>
+          </tr>
+          <tr>
+            <td></td><td><button (click)="saveChanges(p)">Save Changes</button></td>
+          </tr>
+        </table>
+      </div>
+
+
+
+
+
+        <hr class="my-4">
+        <button class="btn btn-primary btn-sm" (click)=addToCart(p) >Add to Cart</button>
+      </div>
+
+</div>

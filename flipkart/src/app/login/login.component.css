@@ -1,0 +1,30 @@
+.login{    
+    height: 200px;
+   
+}
+.u-left{
+    float: left;
+    background-color: rgb(3, 112, 236);
+    height: 100%;
+    width: 30%;
+    color: #FFF;
+    padding: 20px 50px;
+}
+.u-right{
+    float: left;
+    padding: 20px 50px;
+}
+input{
+    width: 300px;
+}
+.login-btn{
+    width: 300px !important;
+}
+.reg{
+    width: 300px;
+    text-align: center;
+}
+.reg a{
+    text-decoration: none;
+    font-size: 20px;   
+}

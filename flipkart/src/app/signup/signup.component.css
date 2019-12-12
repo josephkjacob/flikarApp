@@ -1,0 +1,8 @@
+.log{
+    width: 300px;
+    text-align: center;
+}
+.log a{
+    text-decoration: none;
+    font-size: 20px;   
+}

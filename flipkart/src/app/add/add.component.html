@@ -1,0 +1,73 @@
+<div class="showBorder">
+  <h3>Add Products </h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="category">
+          <button class="btn btn-primary" (click)="getPanel(1)">Add Category</button>
+          <div class="showBorder" *ngIf="showPanel == 1">
+            <h4>Add new Category</h4>
+            <input type="text" name="newCat" placeholder="New Category Name" [(ngModel)]="newCat"><button
+              class="btn btn-success" (click)=setCategory()>Add Category</button>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="section">
+          <button class="btn btn-primary" (click)="getPanel(2)">Add Section</button>
+          <div class="showBorder" *ngIf="showPanel == 2">
+            <h4>Add new Section in category {{selectCategory}}</h4>
+            <select name="selectCategory" [(ngModel)]="selectCategory">
+              <option *ngFor="let c of catagories" value="{{c.name}}" selected>{{c.name}}</option>
+            </select>
+            <input type="text" name="newSec" placeholder="New Section Name" [(ngModel)]="newSec"><button
+              class="btn btn-success" (click)=setSction()>Add Section</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-5 ">
+        <div class="product">
+          <button class="btn btn-primary" (click)="getPanel(3)">Add product</button>
+          <div class="showBorder" *ngIf="showPanel == 3">
+            <h4>Add new product</h4>
+            <label>Category</label>
+            <select name="selectCategory" [(ngModel)]="selectCategory" (change)=categoryChange()>
+              <option *ngFor="let c of catagories" value="{{c.name}}">{{c.name}}</option>
+            </select>
+            <label>Section</label>
+            <select name="selectSection" [(ngModel)]="selectSection">
+              <option *ngFor="let s of category_selection" value="{{s}}">{{s}}</option>
+            </select>
+            <br>
+            <label>Product Name</label>
+            <input type="text" name="newProduct" [(ngModel)]="newProduct" placeholder="New Product Name">
+            <br>
+            <label>Price</label>
+            <input type="number" name="newPrice" [(ngModel)]="newPrice" placeholder="Price">
+            <br>
+            <label>Description</label>
+            <textarea name="newDescription" [(ngModel)]="newDescription" cols="50" rows="5"></textarea>
+            <br>
+            <form enctype="multipart/form-data">
+              <label>Upload Image</label>
+              <input type="file" name="imageFile" id="" accept="Image*/">
+            </form>
+            <button class="btn btn-success" (click)="setProduct()">Add Product</button><span
+              class="message">{{message}}</span>
+          </div>
+      
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  
+</div>

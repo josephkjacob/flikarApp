@@ -1,0 +1,26 @@
+<div class="login">
+  <div class="u-left">
+    <h5>Login</h5>
+    <p>Get access your Orders, Wishlist and Recommendations</p>
+  </div>
+  <div class="u-right">
+    <table>
+      <tr>
+        <td>Username</td>
+        <td><input type="text" name="username" placeholder="Enter username" [(ngModel)]="username" ></td>
+      </tr>
+      <tr><br></tr>
+      <tr>
+        <td>Password</td>
+        <td><input type="password" name="password" placeholder="password" [(ngModel)]="password"></td>
+      </tr>
+      <tr><br></tr>
+      <tr>
+        <td></td><td><button class="btn btn-primary login-btn" (click)="login()">LogIn</button></td>
+      </tr>
+      <tr>
+        <td></td><td><div class="reg"><br><a routerLink="/signup">Register</a></div></td>
+      </tr>
+    </table>
+  </div>
+</div>

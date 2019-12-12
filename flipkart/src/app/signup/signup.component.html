@@ -1,0 +1,28 @@
+<div class="registration">
+  <h4>Register to Flipkart</h4>
+  <table>
+    <tr>
+      <td>email</td>
+      <td><input type="email" name="email" [(ngModel)]="email"></td>
+    </tr>
+    <tr>
+      <td>Username</td>
+      <td><input type="text" name="username" [(ngModel)]="username"></td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><input type="password" name="password" [(ngModel)]="password"></td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><input type="password" name="cnfpassword" [(ngModel)]="cnfpassword"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button (click)="register()">Register</button></td>
+    </tr>
+    <tr>
+        <td></td><td><div class="log"><br><a routerLink="/login">LogIn</a></div></td>
+      </tr>
+  </table>
+</div>
