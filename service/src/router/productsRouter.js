@@ -1,11 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
+const path = require("path");
 const productsRouter = express.Router();
 var dbUrl = "mongodb://localhost:27017:27017/flipkart";
 var categoryModel = require("../../model/categoryModel");
 var sectionModel = require("../../model/sectionModel");
 var productModel = require("../../model/productModel");
+
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
     if (err) throw err;
     else console.log("DB connection is established")
@@ -15,12 +17,8 @@ var storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, "uploads");
     },
-    filename: function (req, file, callback) {
-        console.log("file reached");
-        var fileExt = file.originalname.split(".");
-        var imageFileName = req.body.title + "." + fileExt[fileExt.length - 1];
-        /*callback(null, file.originalname);*/
-        callback(null, imageFileName);
+    filename: function (req, file, callback) {        
+        callback(null, file.originalname);      
     }
 })
 var uploads = multer({ storage: storage });
@@ -65,15 +63,27 @@ productsRouter.get("/getsection", (req, res) => {
         }
     })
 })
+productsRouter.get("/test", (req, res)=>{
+    console.log("test........ calls");
+    res.send("test works")
+})
 productsRouter.post("/addproduct", uploads.single("imageFile"), (req, res) => {
-    console.log("adding prod", req.file);
+
+    /// enabling CORS policy
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200/*   ');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
+    res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+    
     var prd = new productModel();
     prd.category = req.body.category;
     prd.section = req.body.section;
     prd.name = req.body.name;
     prd.price = req.body.price;
     prd.description = req.body.description;
-    prd.image = "-";
+    prd.image = req.file.filename;
     prd.save({}, (err) => {
         console.log("product saved");
         res.send({ msg: "product saved" });
@@ -83,9 +93,22 @@ productsRouter.get("/getProduct", (req, res) => {
     productModel.find({}, (err, data) => {
         if (err) throw err;
         else {
+            
             res.send(data);
         }
     })
+})
+productsRouter.get("/img/:id", (req, res) => {
+    
+    /// enabling CORS policy
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200/*   ');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
+    res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+    console.log(path.join(__dirname, "../../uploads/" + req.params.id));
+    //res.send("img req");
+    res.sendFile(path.join(__dirname, "../uploads/" + "../../uploads/" + req.params.id));
 })
 productsRouter.get("/removeproduct/:id", (req, res) => {
     console.log("removeproduct");

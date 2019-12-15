@@ -16,17 +16,27 @@ import { AddComponent } from './add/add.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
+import { LoginHeaderComponent } from './login-header/login-header.component';
+import { ItemComponent } from './item/item.component';
 
 
 const routes = [
+  {path:"", component:LoginComponent},
   {path:"login", component:LoginComponent},
   {path:"signup", component:SignupComponent},
-  {path:"view", component:ViewComponent},
-  {path:"header", component:HeaderComponent},
-  {path:"add", component:AddComponent},
-  {path:"cart", component:CartComponent},
-  {path:"logout", component:LogoutComponent},
-  {path:"home", component:HomeComponent}
+  
+  {path:"home", component:HomeComponent,
+  children:[
+    {path:"", component:ViewComponent},  
+    {path:"add", component:AddComponent},
+    {path:"cart", component:CartComponent},
+    {path:"logout", component:LogoutComponent},
+    {path:"product", component:ItemComponent}
+  ]}
+
+  
+ 
+ 
 ];
 @NgModule({
   declarations: [
@@ -38,7 +48,9 @@ const routes = [
     AddComponent,
     LogoutComponent,
     CartComponent,
-    HomeComponent    
+    HomeComponent,
+    LoginHeaderComponent,
+    ItemComponent    
   ],
   imports: [
     BrowserModule,

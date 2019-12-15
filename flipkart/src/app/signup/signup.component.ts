@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
+import{Router} from '@angular/router'
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Component({
@@ -11,9 +11,9 @@ import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 export class SignupComponent implements OnInit {
 
   email:String = "email@email.com";
-  username:String = "useruser";
-  password:String = "123";
-  cnfpassword:String = "123";
+  username:String = "admin";
+  password:String = "12345";
+  cnfpassword:String = "12345";
 
 
   constructor(private http:HttpClient, private router:Router, @Inject(LOCAL_STORAGE) private storage:WebStorageService) { }
@@ -27,8 +27,8 @@ export class SignupComponent implements OnInit {
       console.log(data["msg"]);
       if(data["msg"] == "success")
       {
-        this.storage.set("user",{type:data["type"], name:this.username})
-        this.router.navigateByUrl("/view");
+        //this.storage.set("user",{type:data["type"], name:this.username, cart:[]});
+        this.router.navigateByUrl("/");
       }
     })
   }

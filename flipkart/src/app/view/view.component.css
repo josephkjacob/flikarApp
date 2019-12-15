@@ -5,3 +5,22 @@
 .removTxt{
     cursor: pointer;
 }
+.productDisp{
+    cursor: default;
+}
+/* .products-container{
+    position: relative;
+}
+.productModel{
+    position: fixed;
+    z-index: 99;
+    top: 50px;
+    width: 100%;
+    height: 100%;
+    background-color: coral;
+    
+}
+.viewProducts{
+    position: absolute;
+    
+} */

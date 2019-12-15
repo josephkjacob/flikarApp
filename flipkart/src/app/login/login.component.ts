@@ -27,12 +27,12 @@ export class LoginComponent implements OnInit {
     this.http.post(url, obj).subscribe(data =>{
       
       this.message = data;
-      this.storage.set("user",{type:data["type"], name:this.username, cart:[]});
+      this.storage.set("user",{type:data["type"], name:this.username, cart:[],product:[]});
       console.log(window.parent);
       //window.parent.location.reload();
       //window.location.reload();
       //this.router.navigateByUrl("/header");
-     this.router.navigateByUrl("/view");
+     this.router.navigateByUrl("/home");
     });
 
   }

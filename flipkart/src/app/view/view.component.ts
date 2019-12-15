@@ -18,6 +18,9 @@ export class ViewComponent implements OnInit {
   ePrName:String;
   ePrPrice:Number = 0;
   ePrDescription:String;
+  userSelectedProduct;
+  showProduct = false;
+  imageUrl = "http://localhost:4000/products/img/";
   constructor(private http:HttpClient,@Inject(LOCAL_STORAGE) private storage:WebStorageService, private router:Router, private uServ:UserService) { }
 
   ngOnInit() {
@@ -40,6 +43,21 @@ export class ViewComponent implements OnInit {
       console.log(this.products);
     })
   }
+  getProductsDetails(id){
+    // console.log(id);
+    // var url = "http://localhost:4000/products/getAnItem/id";
+    // this.http.get(url).subscribe(data=>{
+      
+    //   console.log(data);
+    // })
+    this.userSelectedProduct = id;
+    this.saveSession();
+   // this.showProduct = true;
+    this.router.navigateByUrl("/home/product");
+  }
+  hideProduct(){
+    this.showProduct = false;
+  }
   addToCart(item){
     let exists:boolean = false;
     
@@ -54,18 +72,15 @@ export class ViewComponent implements OnInit {
         var pr = {count:1, item:item};
         this.cart.push(pr);
       }
-      this.calcAmount();
-
+      this.calcAmount();   
     
-    // else{
-    //   this.amount+= item.price;
-    //   var pr = {count:1, item:item};
-    //   this.cart.push(pr);
-
-    // }
+    this.saveSession();
     
+  }
+  saveSession(){
     var saveCart = this.storage.get("user");
     saveCart.cart = this.cart;
+    saveCart.product = this.userSelectedProduct;
     this.storage.set("user",saveCart);
     console.log(this.storage.get("user"));
   }

@@ -15,17 +15,19 @@ export class AddComponent implements OnInit {
   newSec;
   catagories;
   sections;
-  selectCategory:String;
-  selectSection:String;
+  selectCategory;
+  selectSection;
   category_selection = [];
 
   newProduct:string;
-  newPrice:Number = 0;
-  newDescription:String;
+  newPrice;
+  newDescription;
   message:String;
   constructor( private http:HttpClient, private router:Router, @Inject(LOCAL_STORAGE) private storage:WebStorageService) { }
 
+  imageFile:File = null;
   ngOnInit() {
+    this.newPrice = 0;
     if(this.storage.get("user")){
       console.log(this.storage.get("user"));
     }
@@ -34,6 +36,10 @@ export class AddComponent implements OnInit {
     }
     this.getCategory(); 
     this.getSection();
+  }
+  onImageSelect(event){
+    this.imageFile = <File>event.target.files[0];
+    console.log(this.imageFile.name);
   }
   getPanel(n){
     this.showPanel == n ? this.showPanel = 0 : this.showPanel = n;   
@@ -73,18 +79,21 @@ export class AddComponent implements OnInit {
       this.categoryChange();
     })
   }
-
+  
   setProduct(){
+    var fd = new FormData();
+    var fileExt = this.imageFile.name.split(".");
+    var fileName = this.selectCategory + "_" + this.selectSection+ "_" + this.newProduct + "."+ fileExt[fileExt.length-1];
+    fd.append("imageFile", this.imageFile, fileName);
+    fd.append("category",this.selectCategory);
+    fd.append("section", this.selectSection);
+    fd.append("name", this.newProduct);
+    fd.append("price", this.newPrice);
+    fd.append("description", this.newDescription);
+    fd.append("image", this.imageFile.name);
     var url = "http://localhost:4000/products/addproduct";
-    var prod = {
-      category:this.selectCategory,
-      section:this.selectSection,
-      name:this.newProduct,
-      price:this.newPrice,
-      description:this.newDescription,
-      image:"-"
-    };
-    this.http.post(url, prod).subscribe(data=>{
+    
+    this.http.post(url, fd).subscribe(data=>{
       console.log(data);
       this.message = "Product '" + this.newProduct + "' successfully added";
       this.newProduct = "";

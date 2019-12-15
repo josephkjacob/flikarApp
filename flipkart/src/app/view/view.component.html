@@ -1,40 +1,77 @@
 <div class="products-container">
-    <p>Cart{{cart.length}} Total Amount {{amount}}</p>
-    <div class="jumbotron" *ngFor="let p of products; let i=index" >
-        <h3 class="display-5">{{p.name}}</h3>
-        <h4>{{p.price}}</h4>
-        <p class="lead">{{p.description}}</p>
+  <p>Cart{{cart.length}} Total Amount {{amount}}</p>
 
-        <small><span class="text-muted removTxt" (click)="removeProduct(p)">Delete</span>
-          <span class="pipe-iw">|</span>
-          <span  class="text-muted removTxt" (click)="editproduct(p)" >Edit</span>          
-      </small>
-      <div id="{{p._id}}" style="display: none;">
-        <table>
-          <tr>
-            <td>Product Name: </td>
-            <td><input type="text" name="ePrName" [(ngModel)]="ePrName" id=""></td>
-          </tr>
-          <tr>
-            <td>Product Price: </td>
-            <td><input type="text" name="ePrPrice" [(ngModel)]="ePrPrice" id=""></td>
-          </tr>
-          <tr>
-            <td>Product Description: </td>
-            <td><textarea name="ePrDescription"[(ngModel)]="ePrDescription"  cols="50" rows="5"></textarea>
-          </tr>
-          <tr>
-            <td></td><td><button (click)="saveChanges(p)">Save Changes</button></td>
-          </tr>
-        </table>
+  <!-- <div class="productModel" *ngIf="showProduct">
+    model {{userSelectedProduct.name}}
+    <button (click)="hideProduct();">Close</button>
+  </div> -->
+
+
+
+  <!-- <div class="container">
+      <div class="row" *ngFor="let p of products">
+
+
+          
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  {{p.name}}
+                  <a href="#" target="_blank">
+                    <img src="{{imageUrl+p.image}}" alt="p.name" width=100>
+                    <h5>{{p.name}}</h5>
+                    <p>{{p.price}}</p>
+                    <div class="caption">
+                      <p>{{p.description}}</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
       </div>
 
+    </div> -->
+    <div class="viewProducts">
+
+    
+  <div class="jumbotron" *ngFor="let p of products; let i=index">
+    <div class="productDisp" (click)="getProductsDetails(p)" id="{{p._id}}">
+      <h3 class="display-5">{{p.name}}</h3>
+      <img src="{{imageUrl+p.image}}" alt="p.name" width="100">
+      <h4>{{p.price}}</h4>
+      <p class="lead">{{p.description}}</p>
+    </div>
+    <small><span class="text-muted removTxt" (click)="removeProduct(p)">Delete</span>
+      <span class="pipe-iw">|</span>
+      <span class="text-muted removTxt" (click)="editproduct(p)">Edit</span>
+    </small>
+
+    <div id="{{p._id}}" style="display: none;">
+      <table>
+        <tr>
+          <td>Product Name: </td>
+          <td><input type="text" name="ePrName" [(ngModel)]="ePrName" id=""></td>
+        </tr>
+        <tr>
+          <td>Product Price: </td>
+          <td><input type="text" name="ePrPrice" [(ngModel)]="ePrPrice" id=""></td>
+        </tr>
+        <tr>
+          <td>Product Description: </td>
+          <td><textarea name="ePrDescription" [(ngModel)]="ePrDescription" cols="50" rows="5"></textarea>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button (click)="saveChanges(p)">Save Changes</button></td>
+        </tr>
+      </table>
+    </div>
 
 
 
 
-        <hr class="my-4">
-        <button class="btn btn-primary btn-sm" (click)=addToCart(p) >Add to Cart</button>
-      </div>
 
+    <hr class="my-4">
+    <button class="btn btn-primary btn-sm" (click)=addToCart(p)>Add to Cart</button>
+  </div>
+</div>
 </div>

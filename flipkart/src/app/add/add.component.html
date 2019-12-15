@@ -33,6 +33,7 @@
           <button class="btn btn-primary" (click)="getPanel(3)">Add product</button>
           <div class="showBorder" *ngIf="showPanel == 3">
             <h4>Add new product</h4>
+             <!-- <form action="/products/addproduct" method="post" enctype="multipart/form-data"> -->
             <label>Category</label>
             <select name="selectCategory" [(ngModel)]="selectCategory" (change)=categoryChange()>
               <option *ngFor="let c of catagories" value="{{c.name}}">{{c.name}}</option>
@@ -51,12 +52,15 @@
             <label>Description</label>
             <textarea name="newDescription" [(ngModel)]="newDescription" cols="50" rows="5"></textarea>
             <br>
-            <form enctype="multipart/form-data">
+           
               <label>Upload Image</label>
-              <input type="file" name="imageFile" id="" accept="Image*/">
-            </form>
-            <button class="btn btn-success" (click)="setProduct()">Add Product</button><span
+              <input type="file" name="imageFile" id="" (change)="onImageSelect($event)" accept="Image/*">
+            
+            <button class="btn btn-success" (click)="setProduct()">Add Product</button>
+            <!-- <input type="submit" value="Add Product"> -->
+            <span
               class="message">{{message}}</span>
+              <!-- </form> -->
           </div>
       
         </div>

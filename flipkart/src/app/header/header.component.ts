@@ -11,15 +11,23 @@ import { from } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
+  admin:boolean=false;
   nav = {
     default:[
-      {link:"/signup",title:"SignUp", status:"enabled"},{link:"/login",title:"LogIn", status:"enabled"},{link:"/add",title:"adduser", status:"disabled  "}
+      {link:"/signup",title:"SignUp", status:"enabled"},
+      {link:"/login",title:"LogIn", status:"enabled"},
+      {link:"/home/add",title:"adduser", status:"disabled  "}
     ],
     user:[
-      {link:"/view",title:"View", status:"enabled"},{link:"/searchProducts",title:"Search", status:"disabled"},{link:"/logout ",title:"Logout", status:"enabled"}
+      {link:"/home/view",title:"View", status:"enabled"},
+      {link:"/home/searchProducts",title:"Search", status:"disabled"},
+      {link:"/logout ",title:"Logout", status:"enabled"}
     ],
     admin:[
-      {link:"/add", title:"Add Products", status:"enabled"},{link:"/view",title:"View Products", status:"enabled"},{link:"/searchProducts",title:"Search", status:"disabled"},{link:"/logout",title:"Logout", status:"enabled"}
+      {link:"/home/add", title:"Add Products", status:"enabled"},
+      {link:"/home/view",title:"View Products", status:"enabled"},
+      {link:"/home/searchProducts",title:"Search", status:"disabled"},
+      {link:"/login",title:"Logout", status:"enabled"}
     ]
   }
   activeNav;

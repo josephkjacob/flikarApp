@@ -11,6 +11,6 @@ export class AppComponent {
   constructor(private router:Router) { }
 
   ngOnInit() {
-    this.router.navigateByUrl("/home");
+  //  this.router.navigateByUrl("/home");
   }
 }
