@@ -12,6 +12,7 @@ export class CartComponent implements OnInit {
 
   cart = [];
   amount:Number = 0;
+  imageUrl = "http://localhost:4000/products/img/";
   constructor(@Inject(LOCAL_STORAGE) private storage:WebStorageService, private uServ:UserService, private router:Router) { }
 
   ngOnInit() {
@@ -46,6 +47,12 @@ export class CartComponent implements OnInit {
     this.cart.splice(i, 1);
     this.amount = this.uServ.calcTotalCartAmount(this.cart);
     this.saveUser();
+  }
+  getProductsDetails(p){
+    var userData = this.storage.get("user");
+    userData.product = p;
+    this.storage.set("user",userData);
+    this.router.navigateByUrl("/home/product");
   }
 
 }

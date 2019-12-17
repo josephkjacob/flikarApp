@@ -8,19 +8,11 @@
 .productDisp{
     cursor: default;
 }
-/* .products-container{
-    position: relative;
+.clearfix{
+    clear: both;
 }
-.productModel{
-    position: fixed;
-    z-index: 99;
-    top: 50px;
-    width: 100%;
-    height: 100%;
-    background-color: coral;
-    
+#searchInp{
+    width: 300px;
+    padding: 0 5px;
+    margin: 0 5px;
 }
-.viewProducts{
-    position: absolute;
-    
-} */

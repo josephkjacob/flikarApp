@@ -1,0 +1,29 @@
+.desc{
+    width: 500px;
+}
+.float{
+    float: left;
+}
+.prImage{
+    display: block;
+    border: 1px solid #ccc;
+    padding: 50px;
+    margin: 10px;
+}
+.prImage img{
+    width: 300px;
+}
+.spn-link{
+    color: rgb(138, 135, 135);
+    text-decoration: none !important;
+}
+
+.spn-angle{
+    margin: 0 5px;
+    color: rgb(168, 166, 166);
+}
+.desc-txt{
+    /*  color: rgb(119, 116, 116); */
+    padding-right: 10px;
+    font-weight: bold;
+}

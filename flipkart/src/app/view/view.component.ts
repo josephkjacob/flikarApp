@@ -12,6 +12,7 @@ import {UserService} from '../user.service'
 export class ViewComponent implements OnInit {
 
   products;
+  products_all;
   cart = [];
   amount:number = 0;
 
@@ -20,6 +21,7 @@ export class ViewComponent implements OnInit {
   ePrDescription:String;
   userSelectedProduct;
   showProduct = false;
+  searchInp:String;
   imageUrl = "http://localhost:4000/products/img/";
   constructor(private http:HttpClient,@Inject(LOCAL_STORAGE) private storage:WebStorageService, private router:Router, private uServ:UserService) { }
 
@@ -40,6 +42,7 @@ export class ViewComponent implements OnInit {
     var url = "http://localhost:4000/products/getproduct";
     this.http.get(url).subscribe(data=>{
       this.products = data;
+      this.products_all = data;
       console.log(this.products);
     })
   }
@@ -118,6 +121,29 @@ export class ViewComponent implements OnInit {
     this.http.post(url, item).subscribe(data=>{
       this.getProduct();
     })
+  }
+  searchProduct(){
+    var searchResult = [];
+    if(this.searchInp.trim() == "") this.products = this.products_all;
+    for(var i = 0; i < this.products_all.length; i++){
+      console.log(i, this.products_all[i].name.toLowerCase().search(this.searchInp.toLowerCase()));
+      if(this.products_all[i].name.toLowerCase().search(this.searchInp.toLowerCase()) != -1 ){        
+        searchResult.push(this.products_all[i]);
+      }
+      else if(this.products_all[i].category.toLowerCase().search(this.searchInp.toLowerCase()) != -1 ){
+        searchResult.push(this.products_all[i]);
+      }
+      else if(this.products_all[i].section.toLowerCase().search(this.searchInp.toLowerCase()) != -1 ){
+        searchResult.push(this.products_all[i]);
+      }
+    }
+    
+    
+    console.log(searchResult);
+    this.products = searchResult;
+  }
+  isAdded(){
+    return false;
   }
  
 }

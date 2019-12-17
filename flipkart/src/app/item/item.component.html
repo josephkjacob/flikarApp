@@ -1,16 +1,24 @@
-<p>
-  item works!
-</p>
-<div>
-  <h3>{{product.name}}</h3>
-  <button class="btn btn-warning" (click)="backToView()">Back</button>
-  <div>
-    <img src="{{imageUrl+product.image}}" alt="{{product.name}}">
-    <div>
-      <p>{{product.name}}</p>
-      <p>{{product.price}}</p>
-      <p>{{product.description}}</p>
-    </div>
-  </div>
+
+<div class="container">
+  <div class="row">
+    
  
+    
+    <div class="float">
+      <div class="prImage">
+        <img src="{{imageUrl+product.image}}" alt="{{product.name}}">
+      </div>
+      <button class="btn btn-info" (click)="addToCart()">Add To Cart</button>
+    </div>
+      
+      <div class="float">
+        <span><a routerLink="/home" class="spn-link">Home</a><span class="spn-angle">></span><a href="/home" class="spn-link">{{product.category}}</a><span class="spn-angle">></span><a href="/home" class="spn-link">{{product.section}}</a></span>
+        <h3> {{product.name}}</h3>
+        <h4><i class="fa fa-rupee" style="font-size:22px"></i>  {{product.price}}</h4>
+        <p class="desc"><span class="desc-txt">Description:</span>{{product.description}}</p>
+      </div>
+    </div>
+  
+
+
 </div>

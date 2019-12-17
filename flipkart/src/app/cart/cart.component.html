@@ -1,13 +1,20 @@
-<p>
+<p class="clearfix">
   Your Cart {{amount}}
 </p>
 <div>
-  <div class="jumbotron" *ngFor="let p of cart; let i=index" >
-    <h3 class="display-5">{{p.item.name}}</h3>
-    <h4>{{p.item.price}}</h4>
-    <h5>Quantity <button class="btn btn-success btn-sm" (click)=decQuantity(i)>-</button><span > {{p.count}} </span><button (click)=addQuantity(i) class="btn btn-success btn-sm">+</button></h5>
-       <button class="btn btn-primary btn-sm" (click)=removeFromCart(i) >Remove</button> 
-           <hr class="my-4">
-    
+  <div class="jumbotron" *ngFor="let p of cart; let i=index">
+    <div class="float prImage" (click)="getProductsDetails(p.item)">
+      <img src="{{imageUrl+p.item.image}}" alt="{{p.item.name}}" width="100">
+    </div>
+    <div class="float">
+      <h3 class="display-5">{{p.item.name}}</h3>
+      <h4><i class="fa fa-rupee" style="font-size:22px"></i>{{p.item.price}}</h4>
+      <h5>Quantity <button class="btn btn-success btn-sm" (click)=decQuantity(i)>-</button><span> {{p.count}}
+        </span><button (click)=addQuantity(i) class="btn btn-success btn-sm">+</button></h5>
+      <button class="btn btn-primary btn-sm" (click)=removeFromCart(i)>Remove</button>
+      <!-- <hr class="my-4"> -->
+    </div>
+    <div class="clearfix"></div>
+
   </div>
 </div>
