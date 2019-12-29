@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {UserService} from '../user.service';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 import { Router} from '@angular/router';
-import { from } from 'rxjs';
+
 
 @Component({
   selector: 'app-header',
@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
   activeNav;
   userInfo;
   userName:String;
+  cartCount=0;
   constructor(@Inject(LOCAL_STORAGE) private storage:WebStorageService, private user:UserService, private router:Router) { 
     
   }
@@ -41,8 +42,15 @@ export class HeaderComponent implements OnInit {
      this.userInfo = this.storage.get("user");
      this.userName = "hello";
     this.activeNav = this.getNav();
+
+    console.log("USer Service");
+    this.user.count.subscribe(val =>{
+        this.cartCount = val;
+        console.log(val , "........." , this.cartCount);
+    })
     
   }
+  
   getNav(){
     // if(this.userInfo == null){
     //   return this.nav.default;
@@ -55,7 +63,7 @@ export class HeaderComponent implements OnInit {
   onClick(t){
     
     if(t == "Logout"){
-      console.log(t);
+      //console.log(t);
       this.storage.remove("user");
       
     }

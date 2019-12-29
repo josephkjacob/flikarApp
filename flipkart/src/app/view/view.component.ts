@@ -11,7 +11,12 @@ import {UserService} from '../user.service'
 })
 export class ViewComponent implements OnInit {
 
-  products;
+  // ************
+  rowsPr = [1,2,3];
+  rowCount:number = 3;
+  pCount = 0;
+  // ************
+  products ;
   products_all;
   cart = [];
   amount:number = 0;
@@ -29,11 +34,38 @@ export class ViewComponent implements OnInit {
     this.cart = [];
     this.getProduct();
     this.calcAmount();
+    
+    
+  }
+  populateProducts(){
+    this.rowsPr = [];
+    var counter = 0;
+    console.log(">>>> ",);
+    for(var i = 0; i < Math.floor((this.products.length/3)); i++){
+      var ar;
+      ar = [];
+      for(var k = 0; k < this.rowCount; k++){
+        ar.push(this.products[counter]);
+        counter++;
+      }      
+      this.rowsPr.push(ar);
+    }
+    var arr;
+    arr = [];
+    for(var i = 0; i < this.products.length % this.rowCount; i++){
+      
+        arr.push(this.products[counter]);
+        counter++;
+      
+    }
+    this.rowsPr.push(arr);
+    console.log(this.rowsPr);
   }
   getProduct(){
     if(this.storage.get("user")){
       var userdata = this.storage.get("user");
       this.cart = userdata.cart;
+      this.uServ.itemAddedToCart(this.cart.length);
       console.log(this.storage.get("user"));
     }
     else{
@@ -43,6 +75,7 @@ export class ViewComponent implements OnInit {
     this.http.get(url).subscribe(data=>{
       this.products = data;
       this.products_all = data;
+      this.populateProducts();
       console.log(this.products);
     })
   }
@@ -78,7 +111,7 @@ export class ViewComponent implements OnInit {
       this.calcAmount();   
     
     this.saveSession();
-    
+    this.uServ.itemAddedToCart(this.cart.length);
   }
   saveSession(){
     var saveCart = this.storage.get("user");
@@ -106,9 +139,10 @@ export class ViewComponent implements OnInit {
     })
   }
   editproduct(pr){
+    console.log(pr);
     this.ePrName = pr.name;
     this.ePrPrice = pr.price;
-    this.ePrDescription = pr.description;
+    this.ePrDescription = pr.description;    
     document.getElementById(pr._id).style.display = "block";
     
     

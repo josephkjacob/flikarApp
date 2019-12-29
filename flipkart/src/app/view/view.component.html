@@ -3,6 +3,16 @@
     <label for="searchInp">Search:</label><input type="text" name="searchInp" id="searchInp" [(ngModel)]="searchInp" placeholder="Search your product"><button class="btn btn-success" (click)="searchProduct()">Seacrch</button>
   </div>
 
+
+  <div class="container">
+    <div class="row" *ngFor="let r of rowsPr" >
+      <div class="col-md-4" *ngFor="let p of r" >{{p.name}}</div>
+    </div>
+
+  </div> 
+ 
+
+
   <div class="container products-container">
     <div class="row">
 
@@ -13,8 +23,9 @@
       <div class="viewProducts clearfix">
 
 
-        <div class="jumbotron" *ngFor="let p of products; let i=index">
-          <div class="productDisp" (click)="getProductsDetails(p)" id="{{p._id}}">
+        <div  *ngFor="let p of products; let i=index">
+        <div  class="jumbotron" *ngIf="i<2">
+          <div  class="productDisp" (click)="getProductsDetails(p)" id="{{p._id}}">
             <h3 class="display-5">{{p.name}}</h3>
             <img src="{{imageUrl+p.image}}" alt="p.name" width="100">
             <h4><i class="fa fa-rupee" style="font-size:22px"> </i> {{p.price}}</h4>
@@ -52,6 +63,7 @@
 
           <hr class="my-4">
           <button class="btn btn-primary btn-sm" (click)=addToCart(p)>Add to Cart</button>
+        </div>
         </div>
       </div>
     </div>

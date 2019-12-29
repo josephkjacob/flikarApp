@@ -47,6 +47,7 @@ export class CartComponent implements OnInit {
     this.cart.splice(i, 1);
     this.amount = this.uServ.calcTotalCartAmount(this.cart);
     this.saveUser();
+    this.uServ.itemAddedToCart(this.cart.length);
   }
   getProductsDetails(p){
     var userData = this.storage.get("user");
