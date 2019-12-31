@@ -27,6 +27,8 @@ export class ViewComponent implements OnInit {
   userSelectedProduct;
   showProduct = false;
   searchInp:String;
+
+  userType = 0;
   imageUrl = "http://localhost:4000/products/img/";
   constructor(private http:HttpClient,@Inject(LOCAL_STORAGE) private storage:WebStorageService, private router:Router, private uServ:UserService) { }
 
@@ -34,7 +36,9 @@ export class ViewComponent implements OnInit {
     this.cart = [];
     this.getProduct();
     this.calcAmount();
-    
+    this.uServ.userType.subscribe(type =>{
+      this.userType = type;
+    })
     
   }
   populateProducts(){
@@ -152,9 +156,13 @@ export class ViewComponent implements OnInit {
     item.name = this.ePrName;
     item.price = this.ePrPrice;
     item.description = this.ePrDescription;
+    console.log(item);
     this.http.post(url, item).subscribe(data=>{
       this.getProduct();
     })
+  }
+  CancelChanges(item){
+    document.getElementById(item._id).style.display = "none";
   }
   searchProduct(){
     var searchResult = [];

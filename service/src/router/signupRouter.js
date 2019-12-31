@@ -24,14 +24,14 @@ signupRouter.get("/", (req,res)=>{
 signupRouter.post("/login",(req, res)=>{
     allowServerInLocalMachine(res);
     console.log("request login", req.body);
-    userModel.find({name:"admin"},(err, data)=>{
+    userModel.find({name:req.body.name},(err, data)=>{
         if (err) throw err;
         else{
-           console.log(data);
-           if(data.length == 0){
+           console.log(data == []);
+           if(data.length === 0){
                 res.send({msg:"Username not exists"}); 
            }
-           if(data[0].name === "admin" && data[0].password === "12345"){
+           if(data[0].name === req.body.name && data[0].password === req.body.password){
                res.send({msg:"Login Success",type:data[0].type}); 
            }
            else{

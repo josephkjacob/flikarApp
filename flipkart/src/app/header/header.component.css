@@ -1,3 +1,15 @@
 .navbar-nav a{
     float: right;
 }
+.myCart{
+    text-decoration: none;
+    color: rgb(140, 231, 36);
+}
+.myLinks{
+    text-decoration: none;
+    color: rgba(255,255,255,.5);
+}
+.myLinks:hover{
+    text-decoration: none;
+    color: rgba(255,255,255,.8);
+}

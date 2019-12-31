@@ -5,37 +5,22 @@
 
 
   <div class="container">
-    <div class="row" *ngFor="let r of rowsPr" >
-      <div class="col-md-4" *ngFor="let p of r" >{{p.name}}</div>
-    </div>
-
-  </div> 
- 
-
-
-  <div class="container products-container">
-    <div class="row">
-
-
-      <p class="clearfix">Cart{{cart.length}} Total Amount {{amount}}</p>
-
-
-      <div class="viewProducts clearfix">
-
-
-        <div  *ngFor="let p of products; let i=index">
-        <div  class="jumbotron" *ngIf="i<2">
-          <div  class="productDisp" (click)="getProductsDetails(p)" id="{{p._id}}">
-            <h3 class="display-5">{{p.name}}</h3>
-            <img src="{{imageUrl+p.image}}" alt="p.name" width="100">
-            <h4><i class="fa fa-rupee" style="font-size:22px"> </i> {{p.price}}</h4>
-            <p class="lead">{{p.description}}</p>
+    <div class="row clearfix" *ngFor="let r of rowsPr" >
+      <div class="col-md-4 itemDisply" *ngFor="let p of r" >
+        <div class="itemCard" id="{{p._id+'_123'}}">
+          <h6 class="card-header" (click)="getProductsDetails(p)">{{p.name}}</h6>
+          <img class="img-center" src="{{imageUrl+p.image}}" alt="p.name" height="150" (click)="getProductsDetails(p)">
+          <div class="card-body">
+            <p class="card-title">{{p.section}}</p>
+            <p class="card-subtitle text-muted">{{p.name}}</p>
+            <p class="card-price"><i class="fa fa-rupee" style="font-size:22px"> </i> {{p.price}}</p>   
+            <button class="btn btn-primary btn-sm" (click)=addToCart(p)>Add to Cart</button>  
+            <div class="rem-edit" *ngIf="userType == 1 || userType==2">
+              
+              <small><span class="text-muted removTxt" (click)="removeProduct(p)">Delete</span><span class="pipe-iw">|</span><span class="text-muted removTxt" (click)="editproduct(p)">Edit</span> </small>
+            </div>             
+               
           </div>
-          <small><span class="text-muted removTxt" (click)="removeProduct(p)">Delete</span>
-            <span class="pipe-iw">|</span>
-            <span class="text-muted removTxt" (click)="editproduct(p)">Edit</span>
-          </small>
-
           <div id="{{p._id}}" style="display: none;">
             <table>
               <tr>
@@ -48,23 +33,21 @@
               </tr>
               <tr>
                 <td>Product Description: </td>
-                <td><textarea name="ePrDescription" [(ngModel)]="ePrDescription" cols="50" rows="5"></textarea>
+                <td><textarea name="ePrDescription" [(ngModel)]="ePrDescription" cols="30" rows="5"></textarea>
               </tr>
               <tr>
                 <td></td>
-                <td><button (click)="saveChanges(p)">Save Changes</button></td>
+                <td><button (click)="saveChanges(p)">Save Changes</button><button (click)="CancelChanges(p)">Cancel Changes</button></td>
               </tr>
             </table>
           </div>
-
-
-
-
-
-          <hr class="my-4">
-          <button class="btn btn-primary btn-sm" (click)=addToCart(p)>Add to Cart</button>
-        </div>
+          
         </div>
       </div>
     </div>
-  </div>
+
+  </div> 
+ 
+
+
+  

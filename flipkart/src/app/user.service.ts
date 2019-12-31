@@ -5,18 +5,32 @@ import {BehaviorSubject} from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  userType = "none";
+  userID = 0;
+  userType:BehaviorSubject<number>;
   counter = 0;
   count:BehaviorSubject<number>;
+  
 
   constructor() {
     this.count = new BehaviorSubject(this.counter);
+    this.userType = new BehaviorSubject(this.userID);
    }
    nextCount(){
     this.count.next(++this.counter);
+    
    }
    itemAddedToCart(c = 12){
     this.count.next(c);
+  }
+  setUserType(type="none"){
+    if(type.toLowerCase() == "admin")
+        this.userType.next(1);
+      else if(type.toLowerCase() == "seller")
+        this.userType.next(2);
+      else if(type.toLowerCase() == "user")
+        this.userType.next(3);
+      else
+        this.userType.next(0);
   }
   getNav() {
 

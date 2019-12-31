@@ -34,20 +34,26 @@ export class HeaderComponent implements OnInit {
   userInfo;
   userName:String;
   cartCount=0;
+  userType = 0;
   constructor(@Inject(LOCAL_STORAGE) private storage:WebStorageService, private user:UserService, private router:Router) { 
     
   }
 
   ngOnInit() {
      this.userInfo = this.storage.get("user");
-     this.userName = "hello";
-    this.activeNav = this.getNav();
+    
+     //this.userName = "hello";
+    //this.activeNav = this.getNav();
 
     console.log("USer Service");
     this.user.count.subscribe(val =>{
         this.cartCount = val;
         console.log(val , "........." , this.cartCount);
     })
+    this.user.userType.subscribe(type =>{
+      this.userType = type;
+      console.log("user type ", this.userType);
+    });
     
   }
   

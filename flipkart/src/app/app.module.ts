@@ -24,13 +24,13 @@ const routes = [
   {path:"", component:LoginComponent},
   {path:"login", component:LoginComponent},
   {path:"signup", component:SignupComponent},
+  {path:"logout", component:LogoutComponent},
   
   {path:"home", component:HomeComponent,
   children:[
     {path:"", component:ViewComponent},  
     {path:"add", component:AddComponent},
-    {path:"cart", component:CartComponent},
-    {path:"logout", component:LogoutComponent},
+    {path:"cart", component:CartComponent},    
     {path:"product", component:ItemComponent}
   ]}
 

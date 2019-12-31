@@ -16,3 +16,41 @@
     padding: 0 5px;
     margin: 0 5px;
 }
+
+
+.card-title{
+    color: rgb(114, 116, 114);
+    font-weight: bold;
+}
+.card-subtitle{
+    color: rgb(35, 36, 35);
+}
+.card-price{
+    font-size: 20px;
+    font-weight: bold;
+}
+.itemDisply{
+    
+    padding: 5px;
+}
+.itemCard{
+    border: 1px solid rgb(219, 216, 216);
+
+}
+.itemCard:hover{
+    box-shadow: 0px 0px 11px rgb(139, 138, 138);
+}
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+  .rem-edit{
+    float: right;
+    margin-right: 10px;
+    
+  }
+  .clearfix{
+      clear: both;
+  }
