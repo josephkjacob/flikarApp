@@ -78,6 +78,7 @@ productsRouter.post("/addproduct", uploads.single("imageFile"), (req, res) => {
 
     
     var prd = new productModel();
+    prd.userId = req.body.userId;
     prd.category = req.body.category;
     prd.section = req.body.section;
     prd.name = req.body.name;
@@ -91,6 +92,15 @@ productsRouter.post("/addproduct", uploads.single("imageFile"), (req, res) => {
 })
 productsRouter.get("/getProduct", (req, res) => {
     productModel.find({}, (err, data) => {
+        if (err) throw err;
+        else {
+            
+            res.send(data);
+        }
+    })
+})
+productsRouter.get("/getProduct/:id", (req, res) =>{
+    productModel.find({userId:req.params.id}, (err, data) => {
         if (err) throw err;
         else {
             

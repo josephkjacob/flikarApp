@@ -1,5 +1,66 @@
 <div class="registration">
-  <h4>Register to Flipkart</h4>
+  <div class="container">
+    <div class="row">
+      <div class="col-form">
+        <h5 class="card-header info-color white-text text-center py-4">
+          <strong>Register</strong>
+        </h5>
+        <!-- Default form register -->
+        <form class="text-center border border-light p-5" action="#!">
+
+         
+          
+          <input type="text" class="form-control mb-4" name="username" [(ngModel)]="username" placeholder="Username">
+          <!-- E-mail -->
+          <input type="email"  class="form-control mb-4" name="email" [(ngModel)]="email" placeholder="Email">
+
+          <!-- Password -->
+          <input type="password" class="form-control mb-4" name="password" [(ngModel)]="password" placeholder="Password">
+          <input type="password" class="form-control mb-4" name="cnfpassword" [(ngModel)]="cnfpassword" placeholder="Confirm assword">
+          <!-- <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+            At least 8 characters and 1 digit
+          </small> -->
+
+          <!-- Phone number -->
+          <input type="tel"  class="form-control mb-4" placeholder="Phone number" name="phone" [(ngModel)]="phone" >
+          <!-- <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+            Optional - for two step authentication
+          </small> -->
+
+          <div class="custom-control custom-checkbox  mb-4">
+            <span class="sell-prod">If you want to sell your product</span><br>
+          <input type="checkbox" class="custom-control-input" id="isSeller" name="isSeller" [(ngModel)]="isSeller">
+            <label class="custom-control-label" for="isSeller">I am a Seller</label>
+          </div>
+
+         
+          <!-- Sign up button -->
+          <button class="btn btn-info my-4 btn-block" (click)="register()">Sign in</button>
+
+          <!-- Social register -->
+          <p>or sign up with:</p>
+
+          <a href="https://www.facebook.com/" class="mx-2" role="button"><i
+              class="fa fa-facebook-f light-blue-text"></i></a>
+          <a href="https://twitter.com" class="mx-2" role="button"><i class="fa fa-twitter light-blue-text"></i></a>
+          <a href="https://in.linkedin.com/" class="mx-2" role="button"><i
+              class="fa fa-linkedin light-blue-text"></i></a>
+          <a href="https://github.com/" class="mx-2" role="button"><i class="fa fa-github light-blue-text"></i></a>
+
+          <hr>
+
+          <!-- Terms of service -->
+          <p>By clicking
+            <em>Sign up</em> you agree to our
+            <a href="" target="_blank">terms of service</a>
+
+        </form>
+        <!-- Default form register -->
+      </div>
+    </div>
+    <div class="bottm-space"></div>
+  </div>
+  <!-- <h4>Register to Flipkart</h4>
   <table>
     <tr>
       <td>email</td>
@@ -24,5 +85,5 @@
     <tr>
         <td></td><td><div class="log"><br><a routerLink="/login">LogIn</a></div></td>
       </tr>
-  </table>
+  </table> -->
 </div>

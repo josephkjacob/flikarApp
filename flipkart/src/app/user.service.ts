@@ -22,15 +22,16 @@ export class UserService {
    itemAddedToCart(c = 12){
     this.count.next(c);
   }
-  setUserType(type="none"){
-    if(type.toLowerCase() == "admin")
-        this.userType.next(1);
-      else if(type.toLowerCase() == "seller")
-        this.userType.next(2);
-      else if(type.toLowerCase() == "user")
-        this.userType.next(3);
-      else
-        this.userType.next(0);
+  setUserType(type=0){
+    // if(type.toLowerCase() == "admin")
+    //     this.userType.next(1);
+    //   else if(type.toLowerCase() == "seller")
+    //     this.userType.next(2);
+    //   else if(type.toLowerCase() == "user")
+    //     this.userType.next(3);
+    //   else
+    //     this.userType.next(0);
+    this.userType.next(type);
   }
   getNav() {
 

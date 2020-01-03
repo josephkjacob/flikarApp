@@ -66,8 +66,9 @@ export class ViewComponent implements OnInit {
     console.log(this.rowsPr);
   }
   getProduct(){
+    var userdata
     if(this.storage.get("user")){
-      var userdata = this.storage.get("user");
+      userdata = this.storage.get("user");
       this.cart = userdata.cart;
       this.uServ.itemAddedToCart(this.cart.length);
       console.log(this.storage.get("user"));
@@ -76,6 +77,10 @@ export class ViewComponent implements OnInit {
       this.router.navigateByUrl("/login");
     }
     var url = "http://localhost:4000/products/getproduct";
+    if(userdata.type === 2){
+      url = "http://localhost:4000/products/getproduct/" + userdata.userId;
+    }
+    console.log(userdata.type, "--URLLLL ", url);
     this.http.get(url).subscribe(data=>{
       this.products = data;
       this.products_all = data;
@@ -183,6 +188,7 @@ export class ViewComponent implements OnInit {
     
     console.log(searchResult);
     this.products = searchResult;
+    this.populateProducts();
   }
   isAdded(){
     return false;

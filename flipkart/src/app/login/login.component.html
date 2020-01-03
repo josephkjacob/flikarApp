@@ -1,10 +1,64 @@
-<div class="login">
-  <div class="u-left">
+<div class="container">
+  <div class="row">
+    <div class="col-form">
+      
+  
+  <h5 class="card-header info-color white-text text-center py-4">
+    <strong>Sign in</strong>
+  </h5>
+<form class="text-center border border-light p-5" action="#!">
+
+  
+
+  <!-- Email -->
+  <input type="text" class="form-control mb-4" name="username" placeholder="Enter username" [(ngModel)]="username">
+
+  <!-- Password -->
+  <input type="password" class="form-control mb-4" name="password" placeholder="password" [(ngModel)]="password">
+
+  <div class="d-flex justify-content-around">
+    <div>
+      <!-- Remember me -->
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+      </div>
+    </div>
+    <div>
+      <!-- Forgot password -->
+      <a href="">Forgot password?</a>
+    </div>
+  </div>
+
+  <!-- Sign in button -->
+  <button class="btn btn-info btn-block my-4 waves-effect waves-light" type="submit" (click)="login()">Sign in</button>
+
+  <!-- Register -->
+  <p>Not a member?
+    <a routerLink="/signup">Register</a>
+  </p>
+
+  <!-- Social login -->
+  <p>or sign in with:</p>
+
+  <a href="https://www.facebook.com/" class="mx-2" role="button"><i class="fa fa-facebook-f light-blue-text"></i></a>
+  <a href="https://twitter.com" class="mx-2" role="button"><i class="fa fa-twitter light-blue-text"></i></a>
+  <a href="https://in.linkedin.com/" class="mx-2" role="button"><i class="fa fa-linkedin light-blue-text"></i></a>
+  <a href="https://github.com/" class="mx-2" role="button"><i class="fa fa-github light-blue-text"></i></a>
+
+</form>
+
+    </div>
+  </div>
+
+</div>
+<div class="login ">
+  <!-- <div class="u-left">
     <h5>Login</h5>
     <p>Get access your Orders, Wishlist and Recommendations</p>
-  </div>
-  <div class="u-right">
-    <table>
+  </div> -->
+  <div class="u-right- ">
+    <!-- <table>
       <tr>
         <td>Username</td>
         <td><input type="text" name="username" placeholder="Enter username" [(ngModel)]="username" ></td>
@@ -25,5 +79,7 @@
         <td></td><td><div class="reg"><br><a routerLink="/signup">Register</a></div></td>
       </tr>
     </table>
-  </div>
+  </div> -->
+
+
 </div>

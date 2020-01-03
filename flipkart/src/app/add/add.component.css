@@ -6,3 +6,8 @@
 .message{
     color: darkgreen;
 }
+.admin-can{
+    color: rgb(141, 139, 139);
+    font-size: 14px;
+    margin-bottom: 0;
+}

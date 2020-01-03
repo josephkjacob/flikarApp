@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const pSch = mongoose.Schema({
+    userId:String,
     category:String,
     section:String,
     name:String,

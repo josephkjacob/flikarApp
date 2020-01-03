@@ -1,25 +1,31 @@
 <div class="container">
-  <div class="row">
-    <label for="searchInp">Search:</label><input type="text" name="searchInp" id="searchInp" [(ngModel)]="searchInp" placeholder="Search your product"><button class="btn btn-success" (click)="searchProduct()">Seacrch</button>
+  <div class="row searchBox">
+    
+    <!-- Search form -->
+    
+    <input type="text" name="searchInp" id="searchInp" [(ngModel)]="searchInp" placeholder="Search your product"><button class="btn btn-success" (click)="searchProduct()"><i class="fa fa-search text-grey"
+        aria-hidden="true"></i> Search</button>
   </div>
 
 
   <div class="container">
-    <div class="row clearfix" *ngFor="let r of rowsPr" >
-      <div class="col-md-4 itemDisply" *ngFor="let p of r" >
+    <div class="row clearfix" *ngFor="let r of rowsPr">
+      <div class="col-md-4 itemDisply" *ngFor="let p of r">
         <div class="itemCard" id="{{p._id+'_123'}}">
           <h6 class="card-header" (click)="getProductsDetails(p)">{{p.name}}</h6>
           <img class="img-center" src="{{imageUrl+p.image}}" alt="p.name" height="150" (click)="getProductsDetails(p)">
           <div class="card-body">
             <p class="card-title">{{p.section}}</p>
             <p class="card-subtitle text-muted">{{p.name}}</p>
-            <p class="card-price"><i class="fa fa-rupee" style="font-size:22px"> </i> {{p.price}}</p>   
-            <button class="btn btn-primary btn-sm" (click)=addToCart(p)>Add to Cart</button>  
+            <p class="card-price"><i class="fa fa-rupee" style="font-size:22px"> </i> {{p.price}}</p>
+            <button class="btn btn-primary btn-sm" (click)=addToCart(p)>Add to Cart</button>
             <div class="rem-edit" *ngIf="userType == 1 || userType==2">
-              
-              <small><span class="text-muted removTxt" (click)="removeProduct(p)">Delete</span><span class="pipe-iw">|</span><span class="text-muted removTxt" (click)="editproduct(p)">Edit</span> </small>
-            </div>             
-               
+
+              <small><span class="text-muted removTxt" (click)="removeProduct(p)">Delete</span><span
+                  class="pipe-iw">|</span><span class="text-muted removTxt" (click)="editproduct(p)">Edit</span>
+              </small>
+            </div>
+
           </div>
           <div id="{{p._id}}" style="display: none;">
             <table>
@@ -37,17 +43,15 @@
               </tr>
               <tr>
                 <td></td>
-                <td><button (click)="saveChanges(p)">Save Changes</button><button (click)="CancelChanges(p)">Cancel Changes</button></td>
+                <td><button (click)="saveChanges(p)">Save Changes</button><button (click)="CancelChanges(p)">Cancel
+                    Changes</button></td>
               </tr>
             </table>
           </div>
-          
+
         </div>
       </div>
     </div>
 
-  </div> 
- 
-
-
-  
+  </div>
+  <div class="bottm-space"></div>

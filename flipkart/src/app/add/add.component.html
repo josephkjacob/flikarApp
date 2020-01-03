@@ -2,7 +2,7 @@
   <h3>Add Products </h3>
   <div class="container">
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-3" *ngIf="user.type==1">
         <div class="category">
           <button class="btn btn-primary" (click)="getPanel(1)">Add Category</button>
           <div class="showBorder" *ngIf="showPanel == 1">
@@ -13,7 +13,7 @@
 
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4" *ngIf="user.type==1">
         <div class="section">
           <button class="btn btn-primary" (click)="getPanel(2)">Add Section</button>
           <div class="showBorder" *ngIf="showPanel == 2">
@@ -30,7 +30,7 @@
 
       <div class="col-sm-5 ">
         <div class="product">
-          <button class="btn btn-primary" (click)="getPanel(3)">Add product</button>
+          <button class="btn btn-primary" (click)="getPanel(3)" *ngIf="user.type==1">Add product</button>
           <div class="showBorder" *ngIf="showPanel == 3">
             <h4>Add new product</h4>
              <!-- <form action="/products/addproduct" method="post" enctype="multipart/form-data"> -->
@@ -65,11 +65,11 @@
       
         </div>
       </div>
-
+      
     </div>
 
   </div>
-
+<span class="admin-can" *ngIf="user.type==2">Only ADMIN has the privilege new Categories & Sections of products</span>
 
 
 

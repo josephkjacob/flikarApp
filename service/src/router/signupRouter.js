@@ -32,7 +32,7 @@ signupRouter.post("/login",(req, res)=>{
                 res.send({msg:"Username not exists"}); 
            }
            if(data[0].name === req.body.name && data[0].password === req.body.password){
-               res.send({msg:"Login Success",type:data[0].type}); 
+               res.send({msg:"Login Success",type:data[0].type,_id:data[0]._id}); 
            }
            else{
                res.send("Username or pasword incorrect")
@@ -47,7 +47,7 @@ signupRouter.post("/saveUser",(req, res)=>{
     uModel.name = req.body.name;
     uModel.password = req.body.password;
     uModel.email = req.body.email;
-    uModel.type = "user";
+    uModel.type = req.body.type;
    uModel.save(uModel,(err)=>{
        if (err) throw err;
        else{

@@ -23,32 +23,33 @@ export class AddComponent implements OnInit {
   newPrice;
   newDescription;
   message:String;
+  user;
   constructor( private http:HttpClient, private router:Router, @Inject(LOCAL_STORAGE) private storage:WebStorageService) { }
 
   imageFile:File = null;
   ngOnInit() {
     this.newPrice = 0;
     if(this.storage.get("user")){
-      console.log(this.storage.get("user"));
+      this.user = this.storage.get("user");
+      console.log("iserid = ",this.user.userId);
     }
     else{
       this.router.navigateByUrl("/login");
     }
     this.getCategory(); 
     this.getSection();
+    
   }
   onImageSelect(event){
-    this.imageFile = <File>event.target.files[0];
-    console.log(this.imageFile.name);
+    this.imageFile = <File>event.target.files[0];    
   }
-  getPanel(n){
+  getPanel(n){  
     this.showPanel == n ? this.showPanel = 0 : this.showPanel = n;   
   }
   setCategory(){
     var url= "http://localhost:4000/products/addcategory";
     var catObj = {name:this.newCat}
-    this.http.post(url, catObj).subscribe(data=>{
-      console.log(data["msg"]);
+    this.http.post(url, catObj).subscribe(data=>{      
       this.getCategory();
       this.showPanel = 0;
       this.newCat = "";
@@ -58,7 +59,12 @@ export class AddComponent implements OnInit {
     var url= "http://localhost:4000/products/getcategory";
     this.http.get(url).subscribe(data =>{
       this.catagories = data;
-      console.log(data);
+     // this.selectCategory.value = this.catagories[0].name;
+    // document.getElementById("selectCategory")["value"] = "this.catagories[0].name";
+      
+      if(this.user.type == 2){
+        this.getPanel(3);
+      }
     })
   }
   setSction(){
@@ -67,7 +73,6 @@ export class AddComponent implements OnInit {
     this.http.post(url, secObj).subscribe(data =>{
       this.newSec = "";
       this.showPanel = 0;
-      console.log(data["msg"]);
       this.getSection();
     })
   }
@@ -75,15 +80,15 @@ export class AddComponent implements OnInit {
     var url = "http://localhost:4000/products/getsection";
     this.http.get(url).subscribe(data =>{
       this.sections = data;
-      console.log(this.sections, "-----", data);
       this.categoryChange();
     })
   }
   
-  setProduct(){
+  setProduct(){   
     var fd = new FormData();
     var fileExt = this.imageFile.name.split(".");
     var fileName = this.selectCategory + "_" + this.selectSection+ "_" + this.newProduct + "."+ fileExt[fileExt.length-1];
+    fd.append("userId", this.user.userId);
     fd.append("imageFile", this.imageFile, fileName);
     fd.append("category",this.selectCategory);
     fd.append("section", this.selectSection);

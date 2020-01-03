@@ -54,3 +54,12 @@
   .clearfix{
       clear: both;
   }
+  .searchBox{
+      border: 1px solid #d4d2d2;
+      padding: 5px;
+      margin: 5px;
+  }
+  #searchInp{
+      width:90%;
+  }
+ 

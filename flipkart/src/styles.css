@@ -1,0 +1,26 @@
+.mx-2{
+    font-size: 30px;
+}
+
+.col-form{
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.border-light {
+    border-color: #bdbbbb !important;
+}
+.card {
+    font-weight: 400;
+    border: 0;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+.card-header:first-child {
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+.info-color {
+    background-color: #33b5e5 !important;
+}
+.bottm-space{
+    height: 50px;
+}

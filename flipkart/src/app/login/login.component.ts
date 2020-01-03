@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     var obj={name:this.username, password:this.password};   
     this.http.post(url, obj).subscribe(data =>{
       if(data["msg"] == "Login Success" ){
-        this.storage.set("user",{type:data["type"], name:this.username, cart:[],product:[]})
+        this.storage.set("user",{type:data["type"], name:this.username, cart:[],product:[],userId:data["_id"]})
         this.user.setUserType(data["type"]);
       this.router.navigateByUrl("/home");
       }
