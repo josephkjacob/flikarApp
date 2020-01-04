@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+declare var $:any;
 
 @Component({
   selector: 'app-add',
@@ -28,6 +29,9 @@ export class AddComponent implements OnInit {
 
   imageFile:File = null;
   ngOnInit() {
+    $(document).ready(function(){
+      $("selectCategory").selected = "Electronics";
+    });
     this.newPrice = 0;
     if(this.storage.get("user")){
       this.user = this.storage.get("user");
@@ -37,7 +41,7 @@ export class AddComponent implements OnInit {
       this.router.navigateByUrl("/login");
     }
     this.getCategory(); 
-    this.getSection();
+      this.getSection();
     
   }
   onImageSelect(event){
@@ -60,8 +64,11 @@ export class AddComponent implements OnInit {
     this.http.get(url).subscribe(data =>{
       this.catagories = data;
      // this.selectCategory.value = this.catagories[0].name;
-    // document.getElementById("selectCategory")["value"] = "this.catagories[0].name";
-      
+    // document.getElementById("selectCategory")["selectedIndex"] = 2;
+    //console.log("catagories", this.catagories[0].name)
+    //$("#selectCategory").val(3);
+    //$("#selectCategory option[value='Electronics']").attr("selected", "selected");
+   
       if(this.user.type == 2){
         this.getPanel(3);
       }

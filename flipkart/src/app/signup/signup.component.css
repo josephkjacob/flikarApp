@@ -9,3 +9,8 @@
 .sell-prod{
     color: rgb(160, 158, 157);
 }
+#message{
+    height: 10px;
+     color: darkgreen;
+     font-weight: bold;
+}

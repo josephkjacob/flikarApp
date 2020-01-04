@@ -6,23 +6,22 @@
           <strong>Register</strong>
         </h5>
         <!-- Default form register -->
-        <form class="text-center border border-light p-5" action="#!">
-
+        <form class="text-center border border-light p-5" action="#!">         
          
           
-          <input type="text" class="form-control mb-4" name="username" [(ngModel)]="username" placeholder="Username">
+          <input type="text" class="form-control mb-4" id="username" name="username" [(ngModel)]="username" placeholder="Username" required>
           <!-- E-mail -->
-          <input type="email"  class="form-control mb-4" name="email" [(ngModel)]="email" placeholder="Email">
+          <input type="email"  class="form-control mb-4" id="email" name="email" [(ngModel)]="email" placeholder="Email" required>
 
           <!-- Password -->
-          <input type="password" class="form-control mb-4" name="password" [(ngModel)]="password" placeholder="Password">
-          <input type="password" class="form-control mb-4" name="cnfpassword" [(ngModel)]="cnfpassword" placeholder="Confirm assword">
+          <input type="password" class="form-control mb-4" id="password" name="password" [(ngModel)]="password" placeholder="Password" required>
+          <input type="password" class="form-control mb-4" id="cnfpassword" name="cnfpassword" [(ngModel)]="cnfpassword" placeholder="Confirm assword" required>
           <!-- <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
             At least 8 characters and 1 digit
           </small> -->
 
           <!-- Phone number -->
-          <input type="tel"  class="form-control mb-4" placeholder="Phone number" name="phone" [(ngModel)]="phone" >
+          <input type="tel"  class="form-control mb-4" placeholder="Phone number" id="phone" name="phone" [(ngModel)]="phone" maxlength="10" minlength="10" required>
           <!-- <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
             Optional - for two step authentication
           </small> -->
@@ -33,9 +32,13 @@
             <label class="custom-control-label" for="isSeller">I am a Seller</label>
           </div>
 
+          <div id="message">
+            <p id="msg-validation"  class="msg-validation">{{message}}</p>
+          </div>
          
           <!-- Sign up button -->
-          <button class="btn btn-info my-4 btn-block" (click)="register()">Sign in</button>
+          <button class="btn btn-info my-4 btn-block" id="registerUser" (click)="register()" >Sign in</button>
+          <!-- <button class="btn btn-info my-4 btn-block" id="registerUser" (click)="register()">Sign in</button> -->
 
           <!-- Social register -->
           <p>or sign up with:</p>

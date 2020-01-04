@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 import {Router} from '@angular/router';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-item',
@@ -13,7 +14,7 @@ export class ItemComponent implements OnInit {
   imageUrl = "http://localhost:4000/products/img/";
   userData;
   cart;
-  constructor(@Inject(LOCAL_STORAGE) private storage:WebStorageService, private router:Router) { }
+  constructor(@Inject(LOCAL_STORAGE) private storage:WebStorageService, private router:Router, private uServ:UserService) { }
 
   ngOnInit() {
     this.userData = this.storage.get("user");
@@ -40,6 +41,7 @@ export class ItemComponent implements OnInit {
       }
     this.userData.cart = this.cart;
     this.storage.set("user",this.userData);
+    this.uServ.itemAddedToCart(this.cart.length);
   }
 
 }

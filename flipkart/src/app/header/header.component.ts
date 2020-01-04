@@ -45,14 +45,14 @@ export class HeaderComponent implements OnInit {
      //this.userName = "hello";
     //this.activeNav = this.getNav();
 
-    console.log("USer Service");
+    //console.log("USer Service");
     this.user.count.subscribe(val =>{
         this.cartCount = val;
-        console.log(val , "........." , this.cartCount);
+        //console.log(val , "........." , this.cartCount);
     })
     this.user.userType.subscribe(type =>{
       this.userType = type;
-      console.log("user type ", this.userType);
+      //console.log("user type ", this.userType);
     });
     
   }

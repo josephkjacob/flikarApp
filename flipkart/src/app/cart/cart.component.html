@@ -16,11 +16,12 @@
             <img src="{{imageUrl+p.item.image}}" alt="{{p.item.name}}" width="100">
           </div>
           <div class="float">
-            <h3 class="display-5">{{p.item.name}}</h3>
-            <h4><i class="fa fa-rupee" style="font-size:22px"></i>{{p.item.price}}</h4>
-            <h5>Quantity <button class="btn btn-success btn-sm" (click)=decQuantity(i)>-</button><span> {{p.count}}
-              </span><button (click)=addQuantity(i) class="btn btn-success btn-sm">+</button></h5>
-            <button class="btn btn-primary btn-sm" (click)=removeFromCart(i)>Remove</button>
+            <h5 class="display-5">{{p.item.name}}</h5>
+            <h6><i class="fa fa-rupee" style="font-size:22px"></i>{{p.item.price}}</h6>
+            
+            <h6>Quantity <button class="btn btn-success btn-sm" (click)=decQuantity(i)>-</button><span> {{p.count}}
+              </span><button (click)=addQuantity(i) class="btn btn-success btn-sm">+</button><button class="btn btn-primary btn-sm removeBtn" (click)=removeFromCart(i)>Remove</button></h6>
+            
             <!-- <hr class="my-4"> -->
           </div>
           <div class="clearfix"></div>

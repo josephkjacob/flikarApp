@@ -35,3 +35,11 @@ tr{
     border: 1px solid rgb(212, 210, 210);
     padding: 10px;
 }
+.jumbotron{
+    padding: 7px !important;
+    margin-bottom: 3px;
+    border-bottom: 1px solid rgb(192, 194, 193);
+}
+.removeBtn{
+    margin-left: 50px;
+}

@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
 
   cart = [];
   amount:Number = 0;
-  page:Number = 3
+  page:Number = 0;
   deliveryCharges:number = 0;
   paymentMode:String;
   imageUrl = "http://localhost:4000/products/img/";

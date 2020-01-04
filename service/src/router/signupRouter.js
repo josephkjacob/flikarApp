@@ -48,6 +48,7 @@ signupRouter.post("/saveUser",(req, res)=>{
     uModel.password = req.body.password;
     uModel.email = req.body.email;
     uModel.type = req.body.type;
+    uModel.phone = req.body.phone;
    uModel.save(uModel,(err)=>{
        if (err) throw err;
        else{

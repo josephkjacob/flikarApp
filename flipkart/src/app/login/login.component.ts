@@ -11,8 +11,8 @@ import { UserService} from '../user.service';
 })
 export class LoginComponent implements OnInit {
 
-  username:String = "admin";
-  password:String = "12345";
+  username:String = "";
+  password:String = "";
   message;
   constructor(private http:HttpClient, private router:Router, @Inject(LOCAL_STORAGE) private storage:WebStorageService, private user:UserService) { }
 
