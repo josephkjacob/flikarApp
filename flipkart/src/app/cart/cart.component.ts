@@ -12,6 +12,9 @@ export class CartComponent implements OnInit {
 
   cart = [];
   amount:Number = 0;
+  page:Number = 3
+  deliveryCharges:number = 0;
+  paymentMode:String;
   imageUrl = "http://localhost:4000/products/img/";
   constructor(@Inject(LOCAL_STORAGE) private storage:WebStorageService, private uServ:UserService, private router:Router) { }
 
@@ -20,6 +23,7 @@ export class CartComponent implements OnInit {
       var userData = this.storage.get("user");
       this.cart = userData.cart;
       this.amount = this.uServ.calcTotalCartAmount(this.cart);
+      this.deliveryCharges = this.uServ.calaculateDeliveryCharge(this.cart);
     }
     else{
       this.router.navigateByUrl("login");
@@ -28,11 +32,13 @@ export class CartComponent implements OnInit {
   decQuantity(i){    
     if(this.cart[i].count > 0) this.cart[i].count--;
     this.amount = this.uServ.calcTotalCartAmount(this.cart);
+    this.deliveryCharges = this.uServ.calaculateDeliveryCharge(this.cart);
     this.saveUser();
   }
   addQuantity(i){    
     this.cart[i].count++;
     this.amount = this.uServ.calcTotalCartAmount(this.cart);
+    this.deliveryCharges = this.uServ.calaculateDeliveryCharge(this.cart);
     this.saveUser();
   }
   saveUser(){
@@ -46,6 +52,7 @@ export class CartComponent implements OnInit {
   removeFromCart(i){
     this.cart.splice(i, 1);
     this.amount = this.uServ.calcTotalCartAmount(this.cart);
+    this.deliveryCharges = this.uServ.calaculateDeliveryCharge(this.cart);
     this.saveUser();
     this.uServ.itemAddedToCart(this.cart.length);
   }
@@ -55,5 +62,26 @@ export class CartComponent implements OnInit {
     this.storage.set("user",userData);
     this.router.navigateByUrl("/home/product");
   }
+  cartNext(pg){
+    this.page = pg;
+    if(this.page == 3)
+    {
+      this.clearCart();
+      
+    }
+      
 
+  }
+  clearCart(){
+    this.cart = [];
+    this.amount = this.uServ.calcTotalCartAmount(this.cart);
+    this.deliveryCharges = this.uServ.calaculateDeliveryCharge(this.cart);
+    this.uServ.clearCart();
+    this.saveUser();
+  }
+  currentTime(){
+    let dt = new Date();
+    return dt.toLocaleDateString();
+  }
+  
 }

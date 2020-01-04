@@ -10,3 +10,28 @@
     padding: 10px;
     margin: 10px;
 }
+.cont-text{
+    color: #FFF;
+    /* font-weight: bold; */
+    text-shadow: px px 4px #000 !important;
+}
+
+
+.control-label{
+    font-weight: bold;
+}
+.gap-2{
+    margin: 0 2px;
+}
+table{
+    width: 100%;
+    font-weight: bold;
+    color: rgb(134, 134, 134);
+}
+tr{
+    margin: 10px !important;
+}
+.cards{
+    border: 1px solid rgb(212, 210, 210);
+    padding: 10px;
+}
