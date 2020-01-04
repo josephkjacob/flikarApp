@@ -21,7 +21,7 @@
           <div class="showBorder" *ngIf="showPanel == 2">
             <h4>Add new Section in category {{selectCategory}}</h4>
             <select id="selectCategory" name="selectCategory" [(ngModel)]="selectCategory">
-              <option *ngFor="let c of catagories" value="{{c.name}}" selected>{{c.name}}</option>
+              <option *ngFor="let c of catagories; let n=index" value="{{c.name}}" [selected]="n==1">{{c.name}}</option>
             </select>
             <input type="text" name="newSec" placeholder="New Section Name" [(ngModel)]="newSec"><button
               class="btn btn-success" (click)=setSction()>Add Section</button>
