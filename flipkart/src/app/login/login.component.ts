@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import { Router} from '@angular/router'
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 import { UserService} from '../user.service';
+declare var $:any;
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,18 @@ export class LoginComponent implements OnInit {
 
   username:String = "";
   password:String = "";
-  message;
+  message:String = "";
   constructor(private http:HttpClient, private router:Router, @Inject(LOCAL_STORAGE) private storage:WebStorageService, private user:UserService) { }
 
   ngOnInit() {
     // if(this.storage.get("user")){
     //   this.router.navigateByUrl("/view");
     // }
+    this.storage.remove("uer");
+    this.user.itemAddedToCart(0);
+    $(document).ready(function(){ 
+      $(".msg-validation").hide();
+    });
   }
   login(){
     if(this.username.trim() == "" || this.password.trim() == "" )
@@ -37,6 +43,7 @@ export class LoginComponent implements OnInit {
       }
       else{
         this.message = data["msg"];
+        $(".msg-validation").show().fadeOut(5000);
       }
       
       

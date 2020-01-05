@@ -136,7 +136,7 @@ productsRouter.post("/editproduct", (req, res) => {
         name:req.body.name,
         price:req.body.price,
         description:req.body.description,
-        image:"-"
+        image:req.body.image
     }
     productModel.updateOne({_id:req.body._id},prd,(err)=>{
         if(err) throw err;

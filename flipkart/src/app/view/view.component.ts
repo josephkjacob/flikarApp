@@ -2,7 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 import {Router} from '@angular/router';
-import {UserService} from '../user.service'
+import {UserService} from '../user.service';
+declare var $:any;
 
 @Component({
   selector: 'app-view',
@@ -39,7 +40,9 @@ export class ViewComponent implements OnInit {
     this.uServ.userType.subscribe(type =>{
       this.userType = type;
     })
-    
+    $(document).ready(function(){
+      
+    });
   }
   populateProducts(){
     this.rowsPr = [];
@@ -151,12 +154,14 @@ export class ViewComponent implements OnInit {
     console.log(pr);
     this.ePrName = pr.name;
     this.ePrPrice = pr.price;
-    this.ePrDescription = pr.description;    
+    this.ePrDescription = pr.description;   
+    $(".edit-panel").css("display", "none");
     document.getElementById(pr._id).style.display = "block";
     
     
   }
   saveChanges(item){
+    console.log("items to save = ", item);
     var url = "http://localhost:4000/products/editproduct";
     item.name = this.ePrName;
     item.price = this.ePrPrice;

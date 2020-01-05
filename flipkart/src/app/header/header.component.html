@@ -20,7 +20,7 @@
   <a routerLink="/logout" class="nav-item nav-link myLinks" *ngIf="userType != 0 ">Logout</a>
   <a routerLink="/login" class="nav-item nav-link myLinks" *ngIf="userType == 0" >Login</a>
     <a routerLink="/signup" class="nav-item nav-link myLinks" *ngIf="userType == 0" >Register</a>
-  <a routerLink="/home/cart" class="nav-item nav-link myCart"><i class="fa fa-shopping-cart" style="font-size:36px">{{cartCount}}</i></a>
+  <a routerLink="/home/cart" class="nav-item nav-link myCart"><i class="fa fa-shopping-cart" style="font-size:50px"></i><span class="cart-count-text badge badge-danger" *ngIf="cartCount > 0">{{cartCount}}</span></a>
   <!-- <form class="form-inline my-2 my-lg-0">
     <select class="input search-categories form-control mr-sm-2">
       <option value="0">All Categories</option>

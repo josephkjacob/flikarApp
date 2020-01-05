@@ -27,7 +27,7 @@
             </div>
 
           </div>
-          <div id="{{p._id}}" style="display: none;">
+          <div id="{{p._id}}" class="edit-panel" style="display: none;">
             <table>
               <tr>
                 <td>Product Name: </td>
@@ -43,7 +43,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td><button (click)="saveChanges(p)">Save Changes</button><button (click)="CancelChanges(p)">Cancel
+                <td><button class="btn btn-success btn-sm gap-2" (click)="saveChanges(p)">Save Changes</button><button class="btn btn-success btn-sm gap-2" (click)="CancelChanges(p)">Cancel
                     Changes</button></td>
               </tr>
             </table>

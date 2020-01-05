@@ -10,7 +10,7 @@
           <div class="showBorder" *ngIf="showPanel == 1">
             <h4>Add new Category</h4>
             <input type="text" name="newCat" placeholder="New Category Name" [(ngModel)]="newCat"><button
-              class="btn btn-success" (click)=setCategory()>Add Category</button>
+              class="btn btn-success gap-2" (click)=setCategory()>Add Category</button>
           </div>
 
         </div>
@@ -24,7 +24,7 @@
               <option *ngFor="let c of catagories; let n=index" value="{{c.name}}" [selected]="n==1">{{c.name}}</option>
             </select>
             <input type="text" name="newSec" placeholder="New Section Name" [(ngModel)]="newSec"><button
-              class="btn btn-success" (click)=setSction()>Add Section</button>
+              class="btn btn-success gap-2" (click)=setSction()>Add Section</button>
           </div>
 
         </div>
@@ -58,7 +58,7 @@
               <label>Upload Image</label>
               <input type="file" name="imageFile" id="" (change)="onImageSelect($event)" accept="Image/*">
             
-            <button class="btn btn-success" (click)="setProduct()">Add Product</button>
+            <button class="btn btn-success gap-2" (click)="setProduct()">Add Product</button>
             <!-- <input type="submit" value="Add Product"> -->
             <span
               class="message">{{message}}</span>

@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import{Router} from '@angular/router'
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import {UserService} from '../user.service';
 declare var $:any;
 
 @Component({
@@ -19,10 +20,11 @@ export class SignupComponent implements OnInit {
   isSeller:Number;
   message:String = "";
   
-  constructor(private http:HttpClient, private router:Router, @Inject(LOCAL_STORAGE) private storage:WebStorageService) { }
+  constructor(private http:HttpClient, private router:Router, @Inject(LOCAL_STORAGE) private storage:WebStorageService, private user:UserService) { }
 
   ngOnInit() {
-
+    this.storage.remove("uer");
+    this.user.itemAddedToCart(0);
     $(document).ready(function() {
       $(".msg-validation").hide();
     });
@@ -51,7 +53,7 @@ export class SignupComponent implements OnInit {
       return false;
     }
     else if($("#phone").val().trim() == "" || $("#phone").val().trim().length != 10){
-      $(".msg-validation").text("Please insert proper Contact Number").show().fadeOut(3000);          
+      $(".msg-validation").text("Please insert proper Contact Number").show().fadeOut(5000);          
       $("#phone").focus();
       return false;
     }
@@ -70,6 +72,10 @@ export class SignupComponent implements OnInit {
       {
         //this.storage.set("user",{type:data["type"], name:this.username, cart:[]});
         this.router.navigateByUrl("/");
+      }
+      else{
+        $(".msg-validation").text(data["msg"]).show().fadeOut(5000);          
+      $("#username").focus();
       }
     })
   }
